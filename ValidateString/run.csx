@@ -24,7 +24,7 @@ public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
     }
     string myString = data.myString;
     
-    valid = myString.indexOf("charl") >= 0;
+    valid = myString.IndexOf("charl") >= 0;
 
     return !valid 
         ? req.CreateResponse(HttpStatusCode.BadRequest, string.Join(",", messages.ToArray()))
