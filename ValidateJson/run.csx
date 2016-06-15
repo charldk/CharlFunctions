@@ -29,7 +29,7 @@ public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
     
     JSchema schema = JSchema.Parse(data.jsonSchema.ToString());
     JObject jsonObject = JObject.Parse(data.json.ToString());
-    bool isvalid = jsonObject.IsValid(schema, out messages);
+    valid = jsonObject.IsValid(schema, out messages);
 
     return !valid 
         ? req.CreateResponse(HttpStatusCode.BadRequest, string.Join(",", messages.ToArray()))
