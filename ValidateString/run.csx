@@ -28,7 +28,10 @@ public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
     
     valid = myString.IndexOf("charl") >= 0;
     
-    log.Info("Data passed in is " + valid ? "valid": "not valid");
+    if (valid)
+        log.Info("Data passed in is valid");
+    else
+       log.Info("Data passed in is invalid");
 
     return !valid 
         ? req.CreateResponse(HttpStatusCode.BadRequest, string.Join(",", messages.ToArray()))
