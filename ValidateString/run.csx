@@ -7,7 +7,7 @@ using Newtonsoft.Json.Schema;
 
 public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
 {
-    log.Info($"ValidateJson was triggered!");
+    log.Info($"ValidateString was triggered!");
     
     bool valid = true;
     IList<string> messages =null;
@@ -24,7 +24,11 @@ public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
     }
     string myString = data.myString;
     
+    log.Info("Data passed in: " & myString)
+    
     valid = myString.IndexOf("charl") >= 0;
+    
+    log.Info("Data passed in is " & valid ? "valid", "not valid");
 
     return !valid 
         ? req.CreateResponse(HttpStatusCode.BadRequest, string.Join(",", messages.ToArray()))
